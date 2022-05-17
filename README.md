@@ -18,11 +18,12 @@ I will first explain how to setup Nightscout and later also how to setup Nginx s
 
 ## Setup Nightscout
 
+* I have included the Dockerfile that I used, but it is for refrence only
 * First Clone this repository to your server and go into the folder
 ```sh
 git clone https://github.com/florianschi909/nightscout-docker && cd nightscout-docker
 ```
-* Edit the docker-compose.yml file
+* Edit the docker-compose-amd.yml file if you are on an AMD64 Linux and the docker-compose-arm.yml file if you are on a raspberry pi or any other ARM Linux device
     * Change the API_SECRET value to a password with the min length of 12, I don't know if all special characters are okay
     * Change the BASE_URL to the webadress you want to access Nightscout from later on 
         * if you don't know this yet then wait for my instructions (which I will write later) where I tell you how you can get a free domain
@@ -36,10 +37,14 @@ git clone https://github.com/florianschi909/nightscout-docker && cd nightscout-d
       # use SI units by default
       - DISPLAY_UNITS=mg/dl
 ```
-* This is it. Now follow these two commands and your Nightscout is running on the webadress http://localhost:1337/
+* This is it. Now follow this command and your Nightscout is running on the webadress http://localhost:1337/
+* ARM (Raspberry):
 ```sh
-docker build -t nightscout:14.2.5 .
-docker-compose up -d
+docker-compose -f docker-compose-arm.yml up -d
+```
+* AMD (any Linux PC/Server with an Intel or AMD chip):
+```sh
+docker-compose -f docker-compose-amd.yml up -d
 ```
 
 ## Setup Nginx
