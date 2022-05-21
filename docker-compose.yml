@@ -1,7 +1,7 @@
 version: '3'
 services:
   cgm-remote-monitor:
-    image: "pyrmon/nightscout:14.2.5-arm"
+    image: "pyrmon/nightscout:latest"
     environment:
       ## settings according to
       ## https://github.com/nightscout/cgm-remote-monitor/blob/master/README.md#environment
@@ -58,7 +58,7 @@ services:
       - mongo 
 
   mongo:
-    image: mongo:4.4
+    image: mongo:latest
     volumes:
       - ./mongodb:/data/db
     ports:
